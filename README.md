@@ -1,2 +1,2 @@
 # cf-cors
-cludflare cors
+Make your own cludflare cors! 
