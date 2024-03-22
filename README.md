@@ -1,0 +1,2 @@
+# cf-cors
+cludflare cors
