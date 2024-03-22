@@ -99,11 +99,9 @@ async function handleRequest(event) {
         statusText: outStatusText,
         headers: outHeaders
     })
-
-    mrdnkl.add(event, request, response);
-
+    
+//  mrdnkl.add(event, request, response); // Enabled for Log event
     return response;
-
     // return new Response('OK', { status: 200 })
 }
 
@@ -116,17 +114,16 @@ const blocker = {
     }
 }
 
-const mrdnkl = {
-
-    api: "https://logsene-receiver.donelfantastic.pages.dev/00000000-0000-0000-0000-000000000000/example/",
-
-    headersToObj: headers => {
-        const obj = {}
-        Array.from(headers).forEach(([key, value]) => {
-            obj[key.replace(/-/g, "_")] = value
-        })
-        return obj
-    },
+//* Enabled for Log event
+// const mrdnkl = {
+//    api: "https://logsene-receiver.donelfantastic.workers.dev/00000000-0000-0000-0000-000000000000/example/",
+//    headersToObj: headers => {
+//        const obj = {}
+//        Array.from(headers).forEach(([key, value]) => {
+//            obj[key.replace(/-/g, "_")] = value
+//        })
+//        return obj
+//    },
 
    
     buildBody: (request, response) => {
@@ -145,7 +142,7 @@ const mrdnkl = {
             host: url.host,
             path: url.pathname,
             proxyHost: null,
-            proxyHeader: mrdnkl.headersToObj(request.headers),
+//          proxyHeader: mrdnkl.headersToObj(request.headers), //Enabled for Log event
             cf: request.cf
         }
 
@@ -166,9 +163,9 @@ const mrdnkl = {
         }
     },
 
-    
-    add: (event, request, response) => {
-        const body = mrdnkl.buildBody(request, response);
-        event.waitUntil(fetch(mrdnkl.api, body))
-    }
+//* Enabled for Log event  
+//    add: (event, request, response) => {
+//        const body = mrdnkl.buildBody(request, response);
+//        event.waitUntil(fetch(mrdnkl.api, body))
+//    }
 };
